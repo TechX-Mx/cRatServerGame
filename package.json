@@ -1,0 +1,25 @@
+{
+  "name": "servidorjuego",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MercadoST/cRatServer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MercadoST/cRatServer/issues"
+  },
+  "homepage": "https://github.com/MercadoST/cRatServer#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "querystring": "^0.2.1",
+    "url": "^0.11.3"
+  }
+}
