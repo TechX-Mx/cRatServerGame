@@ -67,7 +67,7 @@ const server = http.createServer((req, res) => {
   }
 });
 
-const port = 3000;
+const port = 80;
 server.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);
 });
