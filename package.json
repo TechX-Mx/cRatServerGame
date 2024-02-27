@@ -1,26 +1,17 @@
 {
-  "name": "servidorjuego",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "start": "yarn node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon -L"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MercadoST/cRatServer.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MercadoST/cRatServer/issues"
-  },
-  "homepage": "https://github.com/MercadoST/cRatServer#readme",
   "dependencies": {
-    "fs": "^0.0.1-security",
-    "http": "^0.0.1-security",
-    "querystring": "^0.2.1",
-    "url": "^0.11.3"
-  }
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "mysql2": "^3.9.2",
+    "nodemon": "^3.1.0",
+    "socket.io": "^4.7.4",
+    "yarn": "^1.22.21"
+  },
+  "name": "Update_Play",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
 }
