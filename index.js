@@ -1,10 +1,14 @@
 const express = require("express");
 const http = require("http");
 const cors = require("cors");
+const morgan = require("morgan");
 
 //server
 const app = express();
 const server = http.createServer(app);
+
+//morgan
+app.use(morgan("dev"));
 
 //excute init script
 const init = require("./init");
@@ -18,7 +22,7 @@ app.use(express.json());
 app.use(cors());
 
 //router
-app.use(require("./router"));
+app.use("/api", require("./router"));
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {

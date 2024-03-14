@@ -5,10 +5,11 @@ const leaderBoardModel = {
     let filePath = path.join(__dirname, "./../../.data", "leaderboard");
     return readJsonFileAsObject(filePath, "leaderboard.json");
   },
-  async updateLeaderBoard(leaderBoardModel) {
+  async updateLeaderBoard(leaderboard) {
+    console.log({ leaderboard });
     let filePath = path.join(__dirname, "./../../.data", "leaderboard");
-    await writeJsonFile(filePath, "leaderboard.json", leaderBoardModel);
-    return leaderBoardModel;
+    await writeJsonFile(filePath, "leaderboard.json", leaderboard);
+    return leaderboard;
   },
 };
 module.exports = leaderBoardModel;

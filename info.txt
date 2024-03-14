@@ -1,1 +1,3 @@
 url:https://cratservergame.onrender.com 
+
+- [x] que se pueda agregar leader board.

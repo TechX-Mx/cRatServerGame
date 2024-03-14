@@ -5,9 +5,7 @@ const path = require("path");
 
 exports.writeJsonFile = async function (ruta, filename, data) {
   const filePath = path.join(ruta, filename);
-  if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(filePath, JSON.stringify(data));
-  }
+  fs.writeFileSync(filePath, JSON.stringify(data));
 };
 
 exports.readJsonFileAsObject = async function (ruta, filename) {
