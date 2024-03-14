@@ -1,3 +1,5 @@
 url:https://cratservergame.onrender.com 
 
 - [x] que se pueda agregar leader board.
+- [x] que se pueda obtener un signin de user.
+- [x] obtener leaderboard
