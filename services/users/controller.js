@@ -11,6 +11,7 @@ exports.signing = async function (req, res) {
     if (!email) return res.status(400).send("Email is required"); //el email es requerido
     if (!username) user.username = createRandomUsername();
     const foundUser = await userModel.findUserByEmail(email);
+    //actualizar nombre de usuariosi me envia uno nuevo y ademas el foundUser existe.
     if (foundUser) return res.status(201).send(foundUser); //enviar el usuario encontrado
     const newUser = await userModel.createUser(user);
     return res.status(201).send(newUser); //enviar el usuario creado
