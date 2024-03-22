@@ -13,7 +13,7 @@ exports.addLeader = async function (req, res) {
     }
     //order leader by score
     leaderBoard.sort((a, b) => b.score - a.score);
-    if (leaderBoard.length >= 10) {
+    if (leaderBoard.length >= 50) {
       leaderBoard.pop();
     }
     let foundLeader = leaderBoard.some(
