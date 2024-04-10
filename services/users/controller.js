@@ -1,24 +1,14 @@
-const userModel = require("./model");
-const { createRandomUsername } = require("./utils.js");
+const User = require("./model");
 
-exports.signing = async function (req, res) {
-  const { email, username } = req.body;
-  const user = {
-    email: email?.toLowerCase(),
-    username,
-  };
-  try {
-    if (!email) return res.status(400).send("Email is required"); //el email es requerido
-    if (!username) user.username = createRandomUsername();
-    const foundUser = await userModel.findUserByEmail(email);
-    //actualizar nombre de usuariosi me envia uno nuevo y ademas el foundUser existe.
-    if (foundUser) return res.status(201).send(foundUser); //enviar el usuario encontrado
-    const newUser = await userModel.createUser(user);
-    return res.status(201).send(newUser); //enviar el usuario creado
-  } catch (error) {
-    console.error(error);
-    if (error instanceof Error) {
-      return res.status(500).send(error.message);
-    }
+exports.signing = async (req, res) => {
+  const findUser = User.findOne({ email: req.body.email });
+  if (findUser) {
+    return res
+      .status(200)
+      .json({ auth: true, emaiL: req.body.email, username: findUser.username });
   }
+  const user = User.create(req.body);
+  res
+    .status(200)
+    .json({ auth: true, email: req.body.email, username: user.username });
 };
