@@ -12,6 +12,10 @@ const Purchase = sequelize.define("Purchase", {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  productIdString: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
