@@ -6,8 +6,8 @@ exports.createPurchase = async (req, res) => {
 };
 
 exports.getUserPurchases = async (req, res) => {
-  const { userId } = req.params;
-  const purchases = await Purchase.findAll({ userId });
+  const { email } = req.params;
+  const purchases = await Purchase.findAll({ email });
   res.json(purchases);
 };
 
