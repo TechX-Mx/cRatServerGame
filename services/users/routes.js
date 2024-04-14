@@ -1,5 +1,6 @@
 const { Router } = require("express");
-const { signing } = require("./controller.js");
+const { signin, getUsers } = require("./controller.js");
 const userRoutes = Router();
-userRoutes.post("/signing", signing); //signing route
+userRoutes.post("/signin", signin); //signing route
+userRoutes.get("/", getUsers); //get all users route
 module.exports = userRoutes;

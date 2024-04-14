@@ -2,6 +2,13 @@ const express = require("express");
 const http = require("http");
 const cors = require("cors");
 const morgan = require("morgan");
+const sequelize = require("./config/db");
+
+//models
+require("./services/products/model");
+require("./services/users/model");
+require("./services/purchases/model");
+require("./services/logs/model");
 
 //server
 const app = express();
@@ -12,6 +19,7 @@ app.use(morgan("dev"));
 
 //excute init script
 const init = require("./init");
+
 init();
 
 //expres middleware
@@ -25,6 +33,17 @@ app.use(cors());
 app.use("/api", require("./router"));
 
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
-});
+
+async function main() {
+  try {
+    await sequelize.sync({ force: true });
+    console.log("All models were synchronized successfully.");
+    server.listen(PORT, () => {
+      console.log(`Server is running on port http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error("Unable to synchronize the models:", error);
+  }
+}
+
+main();

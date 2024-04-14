@@ -1,14 +1,16 @@
 const User = require("./model");
 
-exports.signing = async (req, res) => {
-  const findUser = User.findOne({ email: req.body.email });
+exports.signin = async (req, res) => {
+  const findUser = await User.findOne({ where: { email: req.body.email } });
+
   if (findUser) {
-    return res
-      .status(200)
-      .json({ auth: true, emaiL: req.body.email, username: findUser.username });
+    return res.status(200).json({ auth: true, emaiL: req.body.email });
   }
-  const user = User.create(req.body);
-  res
-    .status(200)
-    .json({ auth: true, email: req.body.email, username: user.username });
+  const user = await User.create(req.body);
+  res.status(200).json(user);
+};
+
+exports.getUsers = async (req, res) => {
+  const users = await User.findAll();
+  res.json(users);
 };
