@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("./../../config/db");
+const sequelize = require("../../config/db");
 
 const Log = sequelize.define("logs", {
   id: {
@@ -9,7 +9,7 @@ const Log = sequelize.define("logs", {
     type: DataTypes.INTEGER,
   },
   content: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
   },
 });
 
