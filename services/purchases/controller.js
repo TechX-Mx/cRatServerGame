@@ -14,6 +14,7 @@ exports.getUserPurchases = async (req, res) => {
   try {
     const { email } = req.params;
     const purchases = await Purchase.findAll({ email });
+
     res.json(purchases);
   } catch (e) {
     console.log(e);
