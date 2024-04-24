@@ -36,7 +36,7 @@ const PORT = process.env.PORT || 3000;
 
 async function main() {
   try {
-    await sequelize.sync();
+    await sequelize.sync({ alter: true, force: false });
     console.log("All models were synchronized successfully.");
     server.listen(PORT, () => {
       console.log(`Server is running on port http://localhost:${PORT}`);
