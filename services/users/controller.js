@@ -1,13 +1,24 @@
 const User = require("./model");
+const { createRandomUsername } = require("./utils");
 
 exports.signin = async (req, res) => {
   try {
-    const findUser = await User.findOne({ where: { email: req.body.email } });
+    const findUser = await User.findOne({
+      where: {
+        $or: [{ email: req.body.email }, { appleId: req.body.appleId }],
+      },
+    });
 
     if (findUser) {
-      return res.status(200).json({ auth: true, emaiL: req.body.email });
+      if (!findUser.username) {
+        const username = createRandomUsername();
+        await User.update({ username }, { where: { email: req.body.email } });
+        return res.status(200).json({ auth: true, ...findUser, username });
+      }
+      return res.status(200).json({ auth: true, ...findUser.dataValues });
     }
-    const user = await User.create(req.body);
+    const username = createRandomUsername();
+    const user = await User.create({ ...req.body, username });
     res.status(200).json(user);
   } catch (e) {
     console.log(e);

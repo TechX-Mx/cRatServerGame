@@ -16,6 +16,9 @@ const User = sequelize.define("users", {
   username: {
     type: DataTypes.STRING,
   },
+  appleId: {
+    type: DataTypes.STRING,
+  },
 });
 
 module.exports = User;
