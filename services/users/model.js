@@ -10,7 +10,6 @@ const User = sequelize.define("users", {
   },
   email: {
     type: DataTypes.STRING,
-    allowNull: false,
     unique: true,
   },
   username: {
@@ -18,6 +17,7 @@ const User = sequelize.define("users", {
   },
   appleId: {
     type: DataTypes.STRING,
+    unique: true,
   },
 });
 

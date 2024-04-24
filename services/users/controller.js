@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const User = require("./model");
 const { createRandomUsername } = require("./utils");
 
@@ -5,15 +6,19 @@ exports.signin = async (req, res) => {
   try {
     const findUser = await User.findOne({
       where: {
-        $or: [{ email: req.body.email }, { appleId: req.body.appleId }],
+        [Op.or]: [
+          { email: req.body.email }, // Buscar por email
+          { appleId: req.body.appleId }, // Buscar por appleId
+        ],
       },
     });
-
     if (findUser) {
       if (!findUser.username) {
         const username = createRandomUsername();
         await User.update({ username }, { where: { email: req.body.email } });
-        return res.status(200).json({ auth: true, ...findUser, username });
+        return res
+          .status(200)
+          .json({ auth: true, ...findUser.dataValues, username });
       }
       return res.status(200).json({ auth: true, ...findUser.dataValues });
     }
