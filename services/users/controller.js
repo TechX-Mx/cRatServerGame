@@ -33,6 +33,14 @@ exports.signin = async (req, res) => {
       return res.status(200).json({ auth: true, ...findUser.dataValues });
     }
     const username = createRandomUsername();
+    const findRandomUser = await User.findOne({
+      where: {
+        username,
+      },
+    });
+    while (findRandomUser) {
+      username = createRandomUsername();
+    }
     const user = await User.create({ ...req.body, username });
     res.status(200).json(user);
   } catch (e) {
