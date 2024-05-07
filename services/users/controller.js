@@ -5,13 +5,15 @@ const { createRandomUsername } = require("./utils");
 exports.signin = async (req, res) => {
   try {
     const email =
-      req.body.email != "null" || req.body.email != null
+      req.body.email != "null" && req.body.email != null && req.body.email != ""
         ? req.body.email
-        : false;
+        : "false";
     const appleId =
-      req.body.appleId != "null" || req.body.appleId != null
+      req.body.appleId != "null" &&
+      req.body.appleId != null &&
+      req.body.appleId != ""
         ? req.body.appleId
-        : false;
+        : "false";
     const findUser = await User.findOne({
       where: {
         [Op.or]: [
@@ -49,7 +51,11 @@ exports.signin = async (req, res) => {
     while (findRandomUser) {
       username = createRandomUsername();
     }
-    const user = await User.create({ ...req.body, username });
+    const user = await User.create({
+      appleId: !req.body.appleId ? null : req.body.appleId,
+      email: !req.body.email ? null : req.body.email,
+      username,
+    });
     res.status(200).json(user);
   } catch (e) {
     console.log(e);
