@@ -7,8 +7,8 @@ exports.signin = async (req, res) => {
     const findUser = await User.findOne({
       where: {
         [Op.or]: [
-          { email: req.body.email ?? "null" }, // Buscar por email
-          { appleId: req.body.appleId ?? "null" }, // Buscar por appleId
+          { email: req.body.email ?? "false" }, // Buscar por email
+          { appleId: req.body.appleId ?? "false" }, // Buscar por appleId
         ],
       },
     });
