@@ -4,11 +4,19 @@ const { createRandomUsername } = require("./utils");
 
 exports.signin = async (req, res) => {
   try {
+    const email =
+      req.body.email != "null" || req.body.email == null
+        ? req.body.email
+        : false;
+    const appleId =
+      req.body.appleId != "null" || req.body.appleId == null
+        ? req.body.appleId
+        : false;
     const findUser = await User.findOne({
       where: {
         [Op.or]: [
-          { email: req.body.email ?? "false" }, // Buscar por email
-          { appleId: req.body.appleId ?? "false" }, // Buscar por appleId
+          { email: email ?? "false" }, // Buscar por email
+          { appleId: appleId ?? "false" }, // Buscar por appleId
         ],
       },
     });
